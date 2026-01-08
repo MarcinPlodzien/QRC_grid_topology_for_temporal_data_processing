@@ -66,9 +66,9 @@ For each time step $k$:
 1.  **Input Reset & Preparation**:
     The state of the **Input Rail (Rail 0)** is traced out and replaced with a fresh product state encoding the input signal $u_k$. The Reservoir Rails are **untouched**, preserving their memory.
 
-    $$
-    \rho_{total}^{(k)} = \rho_{input}(u_k) \otimes \text{Tr}_{input} \left( \rho_{total}^{(k-1)} \right)
-    $$
+$$
+\rho_{total}^{(k)} = \rho_{input}(u_k) \otimes \text{Tr}_{input} \left( \rho_{total}^{(k-1)} \right)
+$$
 
 2.  **Input Encoding ($\rho_{input}$)**:
     The input data $u_k$ is encoded into the input rail. Two strategies are implemented:
@@ -78,15 +78,17 @@ For each time step $k$:
 3.  **Unitary Evolution**:
     The coupled system evolves for a duration $t_{evol}$ under the full Hamiltonian $H$.
 
-    $$
-    \rho_{total}^{(k)'} = e^{-i H t_{evol}} \rho_{total}^{(k)} e^{i H t_{evol}}
-    $$
+$$
+\rho_{total}^{(k)'} = e^{-i H t_{evol}} \rho_{total}^{(k)} e^{i H t_{evol}}
+$$
 
 4.  **Measurement (Readout)**:
     Observable expectations are collected from the Reservoir Rails.
 
-    $$ x_{k, i}^\alpha = \text{Tr}(O_i^\alpha \rho_{total}^{(k)'}) $$
-    
+$$
+x_{k, i}^\alpha = \text{Tr}(O_i^\alpha \rho_{total}^{(k)'})
+$$
+
     **Supported Observables**:
     *   **Pauli Expectations**: $\langle Z_i \rangle, \langle X_i \rangle, \langle Y_i \rangle$ (Local Means, Total Means, Total Stds)
     *   **Correlations**: $\langle Z_i Z_{i+1} \rangle, \langle X_i X_{i+1} \rangle, \langle Y_i Y_{i+1} \rangle$
