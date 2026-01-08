@@ -89,9 +89,9 @@ $$
 x_{k, i}^\alpha = \text{Tr}(O_i^\alpha \rho_{total}^{(k)'})
 $$
 
-    **Supported Observables**:
-    *   **Pauli Expectations**: $\langle Z_i \rangle, \langle X_i \rangle, \langle Y_i \rangle$ (Local Means, Total Means, Total Stds)
-    *   **Correlations**: $\langle Z_i Z_{i+1} \rangle, \langle X_i X_{i+1} \rangle, \langle Y_i Y_{i+1} \rangle$
+**Supported Observables**:
+*   **Pauli Expectations**: $\langle Z_i \rangle, \langle X_i \rangle, \langle Y_i \rangle$,  $\langle Z^2_i \rangle, \langle X^2_i \rangle, \langle Y^2_i \rangle$  
+*   **Nearest-neighbors correlations along each rail**: $\langle Z_i Z_{i+1} \rangle, \langle X_i X_{i+1} \rangle, \langle Y_i Y_{i+1} \rangle$
 
 ---
 
