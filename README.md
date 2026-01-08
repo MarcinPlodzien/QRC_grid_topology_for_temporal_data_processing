@@ -76,13 +76,15 @@ For each time step $k$:
     *   **Batch (Sliding Window) Input** (`batch_data_input`): Spatial-Temporal embedding of history vector $\vec{u}_k$.
 
 3.  **Unitary Evolution**:
+4.  
     The coupled system evolves for a duration $t_{evol}$ under the full Hamiltonian $H$.
 
     $$
     \rho_{total}^{(k)'} = e^{-i H t_{evol}} \rho_{total}^{(k)} e^{i H t_{evol}}
     $$
 
-4.  **Measurement (Readout)**:
+5.  **Measurement (Readout)**:
+6.  
     Observable expectations are collected from the **Reservoir Rails**.
 
     $$
@@ -90,7 +92,9 @@ For each time step $k$:
     $$
     
     **Supported Observables**:
+    
     *   **Pauli Expectations**: $\langle Z_i \rangle, \langle X_i \rangle, \langle Y_i \rangle$ (Local Means, Total Means, Total Stds)
+    *   
     *   **Correlations**: $\langle Z_i Z_{i+1} \rangle, \langle X_i X_{i+1} \rangle, \langle Y_i Y_{i+1} \rangle$
 
 ---
