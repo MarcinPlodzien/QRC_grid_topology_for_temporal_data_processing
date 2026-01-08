@@ -21,19 +21,31 @@ The system is divided into functional sub-systems:
 2.  **Reservoir Rails (Rails 1 to $N-1$)**: 1D chains that act as the primary processing substrate, coupled to the input rail and each other via "rungs".
 
 The Hamiltonian is defined as:
-$$ H = \sum_{r=0}^{N-1} H_{rail}^{(r)} + H_{rungs} + H_{field} $$
+
+$$
+H = \sum_{r=0}^{N-1} H_{rail}^{(r)} + H_{rungs} + H_{field}
+$$
 
 ### 2.2. Hamiltonian Interaction Terms
 The couplings are generally of the Heisenberg or XXZ type:
 
 **Intra-Rail Couplings**:
-$$ H_{rail}^{(r)} = \sum_{i=1}^{L-1} \sum_{\alpha \in \{x,y,z\}} J_{rail}^{\alpha} \sigma_{i, r}^\alpha \sigma_{i+1, r}^\alpha $$
+
+$$
+H_{rail}^{(r)} = \sum_{i=1}^{L-1} \sum_{\alpha \in \{x,y,z\}} J_{rail}^{\alpha} \sigma_{i, r}^\alpha \sigma_{i+1, r}^\alpha
+$$
 
 **Rung (Inter-Rail) Couplings**:
-$$ H_{rungs} = \sum_{r=0}^{N-2} \sum_{i=1}^{L} \sum_{\alpha \in \{x,y,z\}} J_{rung}^{\alpha} \sigma_{i, r}^\alpha \sigma_{i, r+1}^\alpha $$
+
+$$
+H_{rungs} = \sum_{r=0}^{N-2} \sum_{i=1}^{L} \sum_{\alpha \in \{x,y,z\}} J_{rung}^{\alpha} \sigma_{i, r}^\alpha \sigma_{i, r+1}^\alpha
+$$
 
 **External Fields**:
-$$ H_{field} = \sum_{r=0}^{N-1} \sum_{i=1}^{L} \sum_{\alpha \in \{x,y,z\}} h_{i, r}^\alpha \sigma_{i, r}^\alpha $$
+
+$$
+H_{field} = \sum_{r=0}^{N-1} \sum_{i=1}^{L} \sum_{\alpha \in \{x,y,z\}} h_{i, r}^\alpha \sigma_{i, r}^\alpha
+$$
 
 Where:
 *   $\sigma^\alpha$ are Pauli matrices.
@@ -53,7 +65,10 @@ For each time step $k$:
 
 1.  **Input Reset & Preparation**:
     The state of the **Input Rail (Rail 0)** is traced out and replaced with a fresh product state encoding the input signal $u_k$. The Reservoir Rails are **untouched**, preserving their memory.
-    $$ \rho_{total}^{(k)} = \rho_{input}(u_k) \otimes \text{Tr}_{input} \left( \rho_{total}^{(k-1)} \right) $$
+
+    $$
+    \rho_{total}^{(k)} = \rho_{input}(u_k) \otimes \text{Tr}_{input} \left( \rho_{total}^{(k-1)} \right)
+    $$
 
 2.  **Input Encoding ($\rho_{input}$)**:
     The input data $u_k$ is encoded into the input rail. Two strategies are implemented:
@@ -62,11 +77,17 @@ For each time step $k$:
 
 3.  **Unitary Evolution**:
     The coupled system evolves for a duration $t_{evol}$ under the full Hamiltonian $H$.
-    $$ \rho_{total}^{(k)'} = e^{-i H t_{evol}} \rho_{total}^{(k)} e^{i H t_{evol}} $$
+
+    $$
+    \rho_{total}^{(k)'} = e^{-i H t_{evol}} \rho_{total}^{(k)} e^{i H t_{evol}}
+    $$
 
 4.  **Measurement (Readout)**:
     Observable expectations are collected from the **Reservoir Rails**.
-    $$ x_{k, i}^\alpha = \text{Tr}(O_i^\alpha \rho_{total}^{(k)'}) $$
+
+    $$
+    x_{k, i}^\alpha = \text{Tr}(O_i^\alpha \rho_{total}^{(k)'})
+    $$
     
     **Supported Observables**:
     *   **Pauli Expectations**: $\langle Z_i \rangle, \langle X_i \rangle, \langle Y_i \rangle$ (Local Means, Total Means, Total Stds)
@@ -112,7 +133,7 @@ python 03_plot_qrc_ladder.py
 ### 5.2. Time Integration strategies
 *   **Exact Diagonalization (`exact_eig`)**: Best for small $N \le 12$.
 *   **Runge-Kutta 4 (`rk4_dense`, `rk4_sparse`)**: For larger or time-dependent systems.
-*   **Trotterization (`trotter`)**: For larger systems.
+*   **Trotterization (`trotter`)**: For large sparse systems.
 
 ---
 
@@ -124,5 +145,5 @@ The standard benchmark is the prediction of the chaotic **Mackey-Glass** time se
 
 ---
 
-**Author**: Project Team (Quantum Reservoir Computing Group)
-**Date**: February 2026
+**Author**: Marcin Plodzien
+**Date**: January 2026
